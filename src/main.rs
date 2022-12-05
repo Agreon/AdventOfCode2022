@@ -24,6 +24,7 @@ fn execute_days() {
 
     println!("## Day 5");
     util::with_timing(day5::part_one);
+    util::with_timing(day5::part_two);
 }
 
 fn main() {

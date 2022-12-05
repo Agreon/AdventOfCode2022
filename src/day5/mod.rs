@@ -6,6 +6,13 @@ struct Harbour {
     pub multi_pick: bool,
 }
 
+#[derive(Debug)]
+struct Instruction {
+    pub from: usize,
+    pub to: usize,
+    pub amount: usize,
+}
+
 impl Harbour {
     pub fn new(stack_capacity: usize, stack_amount: usize, multi_pick: bool) -> Self {
         let mut stacks = Vec::with_capacity(stack_amount);
@@ -42,13 +49,6 @@ impl Harbour {
         }
         return row;
     }
-}
-
-#[derive(Debug)]
-struct Instruction {
-    pub from: usize,
-    pub to: usize,
-    pub amount: usize,
 }
 
 fn create_harbour_from_initial_state(state: &str, enable_multi_pick: bool) -> Harbour {
