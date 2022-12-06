@@ -1,15 +1,15 @@
 static INPUT: &'static str = include_str!("input.txt");
 
-pub fn part_one() -> usize {
-    let mut distinct: Vec<char> = Vec::with_capacity(4);
+fn find_distinct_sequence(length: usize) -> usize {
+    let mut distinct: Vec<char> = Vec::with_capacity(length);
 
     for (i, character) in INPUT.chars().enumerate() {
         if distinct.iter().all(|d| *d != character) {
-            if distinct.len() == 3 {
+            if distinct.len() == length - 1 {
                 return i + 1;
             }
         } else {
-            distinct = Vec::with_capacity(4);
+            distinct = Vec::with_capacity(length);
         }
 
         distinct.push(character);
@@ -18,20 +18,10 @@ pub fn part_one() -> usize {
     panic!("Did not find 4 distinct chars");
 }
 
+pub fn part_one() -> usize {
+    find_distinct_sequence(4)
+}
+
 pub fn part_two() -> usize {
-    let mut distinct: Vec<char> = Vec::with_capacity(14);
-
-    for (i, character) in INPUT.chars().enumerate() {
-        if distinct.iter().all(|d| *d != character) {
-            if distinct.len() == 13 {
-                return i + 1;
-            }
-        } else {
-            distinct = Vec::with_capacity(14);
-        }
-
-        distinct.push(character);
-    }
-
-    panic!("Did not find 4 distinct chars");
+    find_distinct_sequence(14)
 }
