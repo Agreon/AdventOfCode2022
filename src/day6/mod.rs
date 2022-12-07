@@ -18,10 +18,37 @@ fn find_distinct_sequence(length: usize) -> usize {
     panic!("Did not find 4 distinct chars");
 }
 
-pub fn part_one() -> usize {
-    find_distinct_sequence(4)
+fn find_distinct_sequence_binary(length: usize) -> usize {
+    let mut dist: u32;
+    let converted_length: u32 = length.try_into().unwrap();
+
+    for (i, window) in INPUT.as_bytes().windows(length).enumerate() {
+        dist = 0;
+
+        for character in window {
+            dist |= 1 << (*character - b'a');
+        }
+
+        if dist.count_ones() == converted_length {
+            return i + length;
+        }
+    }
+
+    panic!("Did not find 4 distinct chars");
 }
 
+// is faster
+pub fn part_one() -> usize {
+    let test = find_distinct_sequence_binary(4);
+
+    println!("{:?}", test);
+    test
+}
+
+// TODO: Is slower
 pub fn part_two() -> usize {
-    find_distinct_sequence(14)
+    let test = find_distinct_sequence(14);
+
+    println!("{:?}", test);
+    test
 }
