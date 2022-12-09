@@ -15,9 +15,10 @@ fn find_distinct_sequence(length: usize) -> usize {
         distinct.push(character);
     }
 
-    panic!("Did not find 4 distinct chars");
+    panic!("Did not find {:?} distinct chars", length);
 }
 
+// This is actually way slower than the vec variant. Also with windows etc.
 fn find_distinct_sequence_binary(length: usize) -> usize {
     let converted_length: u32 = length.try_into().unwrap();
 
@@ -47,7 +48,7 @@ fn find_distinct_sequence_binary(length: usize) -> usize {
     panic!("Did not find {:?} distinct chars", length);
 }
 
-// is faster
+// 120 ys
 pub fn part_one() -> usize {
     let test = find_distinct_sequence(4);
 
@@ -55,7 +56,7 @@ pub fn part_one() -> usize {
     test
 }
 
-// TODO: Is slower
+// 320 ys
 pub fn part_two() -> usize {
     let test = find_distinct_sequence(14);
 
