@@ -1,5 +1,3 @@
-use std::time::Instant;
-
 static INPUT: &'static str = include_str!("input.txt");
 
 fn count_visible_trees(input: &str) -> u64 {
@@ -82,13 +80,11 @@ fn count_visible_trees(input: &str) -> u64 {
         }
     }
 
-    println!("Visible: {:?}", visible);
-
     return visible;
 }
 
 fn count_visible_trees_simple(input: &str) -> u64 {
-    let lines: Vec<_> = input.lines().map(|line| line.trim().as_bytes()).collect();
+    let lines: Vec<_> = input.lines().map(|line| line.as_bytes()).collect();
 
     let height = lines.len();
     let width = lines[0].len();
@@ -161,14 +157,10 @@ fn count_visible_trees_simple(input: &str) -> u64 {
         }
     }
 
-    println!("Visible: {:?}", visible);
-
     return visible;
 }
 
 fn count_visible_trees_vertical_vec(input: &str) -> u64 {
-    let now = Instant::now();
-
     let lines: Vec<_> = input.lines().map(|line| line.trim().as_bytes()).collect();
 
     let height = lines.len();
@@ -182,10 +174,6 @@ fn count_visible_trees_vertical_vec(input: &str) -> u64 {
 
     let mut north_max = Vec::from(lines[0]);
     let mut south_max: Vec<u8> = Vec::from(lines[height - 1]);
-
-    let elapsed = now.elapsed();
-    // 50-60
-    println!("Initialization: {:.2?}", elapsed);
 
     for y in 0..=(height - 1) {
         for x in 0..width {
@@ -262,8 +250,6 @@ fn count_visible_trees_vertical_vec(input: &str) -> u64 {
         }
     }
 
-    println!("Visible: {:?}", visible);
-
     return visible;
 }
 
@@ -319,8 +305,6 @@ fn visible_trees_from_inside(input: &str) -> u64 {
             }
         }
     }
-
-    println!("Max: {:?}", max);
 
     return max;
 }
@@ -392,8 +376,6 @@ fn visible_trees_from_inside_one_way_caching(input: &str) -> usize {
             }
         }
     }
-
-    println!("Max: {:?}", max);
 
     return max;
 }

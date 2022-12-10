@@ -90,15 +90,11 @@ fn find_directories() -> Vec<Rc<RefCell<Node>>> {
 pub fn part_one() -> u64 {
     let directories = find_directories();
 
-    let total = directories
+    return directories
         .iter()
         .map(|dir| dir.borrow().size)
         .filter(|size| *size < 100_000)
         .sum();
-
-    println!("{:?}", total);
-
-    return total;
 }
 
 pub fn part_two() -> u64 {

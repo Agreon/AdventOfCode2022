@@ -50,16 +50,10 @@ fn find_distinct_sequence_binary(length: usize) -> usize {
 
 // 120 ys
 pub fn part_one() -> usize {
-    let test = find_distinct_sequence(4);
-
-    println!("{:?}", test);
-    test
+    return find_distinct_sequence(4);
 }
 
 // 320 ys
 pub fn part_two() -> usize {
-    let test = find_distinct_sequence(14);
-
-    println!("{:?}", test);
-    test
+    return find_distinct_sequence(14);
 }
