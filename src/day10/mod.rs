@@ -22,7 +22,7 @@ pub fn part_one() -> i32 {
     let mut cycles = 1;
     let mut add_next_cycle = 0;
 
-    while true {
+    loop {
         if (cycles % 40) - 20 == 0 {
             total += x * cycles;
         }
@@ -51,8 +51,6 @@ pub fn part_one() -> i32 {
 }
 
 pub fn part_two() {
-    let mut total = 0;
-
     let mut commands = INPUT.lines().map(|line| {
         let mut parts = line.split_whitespace();
 
@@ -69,11 +67,7 @@ pub fn part_two() {
     let mut cycle: i32 = 1;
     let mut add_next_cycle: i32 = 0;
 
-    while true {
-        if (cycle % 40) - 20 == 0 {
-            total += x * cycle;
-        }
-
+    loop {
         for i in (x - 1)..=(x + 1) {
             if i == (cycle - 1) % 40 {
                 let y = (cycle - 1) / 40;
