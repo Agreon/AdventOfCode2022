@@ -5,18 +5,22 @@ enum Cmd {
     Add(i32),
 }
 
+fn parse_commands<'a>(input: &'a str) -> impl Iterator<Item = Cmd> + 'a {
+    return input.lines().map(|line| {
+        let mut parts = line.split_whitespace();
+
+        match (parts.next().unwrap(), parts.next()) {
+            ("noop", None) => Cmd::Noop,
+            ("addx", Some(amount)) => Cmd::Add(amount.parse::<i32>().unwrap()),
+            _ => unreachable!(),
+        }
+    });
+}
+
 pub fn part_one() -> i32 {
     let mut total = 0;
 
-    let mut commands = INPUT.lines().map(|line| {
-        let mut parts = line.split_whitespace();
-
-        match parts.next().unwrap() {
-            "addx" => Cmd::Add(parts.next().unwrap().parse::<i32>().unwrap()),
-            "noop" => Cmd::Noop,
-            _ => panic!("Unknown part"),
-        }
-    });
+    let mut commands = parse_commands(INPUT);
 
     let mut x = 1;
     let mut cycles = 1;
@@ -51,15 +55,7 @@ pub fn part_one() -> i32 {
 }
 
 pub fn part_two() {
-    let mut commands = INPUT.lines().map(|line| {
-        let mut parts = line.split_whitespace();
-
-        match parts.next().unwrap() {
-            "addx" => Cmd::Add(parts.next().unwrap().parse::<i32>().unwrap()),
-            "noop" => Cmd::Noop,
-            _ => panic!("Unknown part"),
-        }
-    });
+    let mut commands = parse_commands(INPUT);
 
     let mut screen = vec![vec![false; 40]; 6];
 
