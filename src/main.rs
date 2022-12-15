@@ -2,6 +2,8 @@ pub mod day1;
 pub mod day10;
 pub mod day11;
 pub mod day12;
+pub mod day13;
+pub mod day14;
 pub mod day2;
 pub mod day3;
 pub mod day4;
@@ -60,6 +62,14 @@ fn execute_days() {
     // println!("## Day 12");
     util::with_timing(day12::part_one);
     util::with_timing(day12::part_two);
+
+    println!("## Day 13");
+    util::with_timing(day13::part_one);
+    // util::with_timing(day13::part_two);
+
+    println!("## Day 14");
+    util::with_timing(day14::part_one);
+    util::with_timing(day14::part_two);
 }
 
 fn main() {
