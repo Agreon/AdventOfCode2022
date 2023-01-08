@@ -1,4 +1,4 @@
-static INPUT: &'static str = include_str!("input.txt");
+static INPUT: &str = include_str!("input.txt");
 
 #[derive(Debug)]
 struct Harbour {
@@ -35,7 +35,7 @@ impl Harbour {
             .drain((from_stack.len() - instruction.amount)..from_stack.len())
             .collect::<Vec<char>>();
 
-        if self.multi_pick == false {
+        if !self.multi_pick {
             crates.reverse();
         }
 
@@ -45,9 +45,9 @@ impl Harbour {
     pub fn get_top_row(&self) -> String {
         let mut row = String::with_capacity(self.stacks.capacity());
         for stack in &self.stacks {
-            row.push(stack.last().unwrap().clone());
+            row.push(*stack.last().unwrap());
         }
-        return row;
+        row
     }
 }
 
@@ -67,13 +67,13 @@ fn create_harbour_from_initial_state(state: &str, enable_multi_pick: bool) -> Ha
         for stack in 0..stack_amount {
             let character = chars[1 + (stack * 4)];
 
-            if character.is_whitespace() == false {
+            if !character.is_whitespace() {
                 harbour.add_crate(stack, character);
             }
         }
     }
 
-    return harbour;
+    harbour
 }
 
 fn prepare_instructions<'a>(instructions: &'a str) -> impl Iterator<Item = Instruction> + 'a {
@@ -101,7 +101,7 @@ pub fn part_one() -> String {
         harbour.apply_instruction(&instruction);
     }
 
-    return harbour.get_top_row();
+    harbour.get_top_row()
 }
 
 pub fn part_two() -> String {
@@ -115,5 +115,5 @@ pub fn part_two() -> String {
         harbour.apply_instruction(&instruction);
     }
 
-    return harbour.get_top_row();
+    harbour.get_top_row()
 }

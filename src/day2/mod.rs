@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-static INPUT: &'static str = include_str!("input.txt");
+static INPUT: &str = include_str!("input.txt");
 
 pub fn part_one() -> usize {
     let point_map: HashMap<char, usize> =
@@ -18,7 +18,7 @@ pub fn part_one() -> usize {
         all_points += win_points + own_point;
     }
 
-    return all_points;
+    all_points
 }
 
 pub fn part_two() -> usize {
@@ -37,5 +37,21 @@ pub fn part_two() -> usize {
         all_points += win_points;
     }
 
-    return all_points;
+    all_points
+}
+
+#[cfg(test)]
+mod tests {
+    use super::part_one;
+    use super::part_two;
+
+    #[test]
+    fn test_part_one() {
+        assert_eq!(part_one(), 14163)
+    }
+
+    #[test]
+    fn test_part_two() {
+        assert_eq!(part_two(), 12091)
+    }
 }

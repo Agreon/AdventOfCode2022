@@ -1,7 +1,7 @@
-static INPUT: &'static str = include_str!("input.txt");
+static INPUT: &str = include_str!("input.txt");
 
 pub fn part_one() -> u32 {
-    return INPUT
+    INPUT
         .split("\n\n")
         .map(|block| {
             block
@@ -10,7 +10,7 @@ pub fn part_one() -> u32 {
                 .sum::<u32>()
         })
         .max()
-        .unwrap();
+        .unwrap()
 }
 
 pub fn part_two() -> u32 {
@@ -26,5 +26,21 @@ pub fn part_two() -> u32 {
 
     block_values.sort_by(|a, b| b.cmp(a));
 
-    return block_values[0..3].into_iter().sum();
+    block_values[0..3].iter().sum()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::part_one;
+    use super::part_two;
+
+    #[test]
+    fn test_part_one() {
+        assert_eq!(part_one(), 71934)
+    }
+
+    #[test]
+    fn test_part_two() {
+        assert_eq!(part_two(), 211447)
+    }
 }

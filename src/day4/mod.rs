@@ -1,4 +1,4 @@
-static INPUT: &'static str = include_str!("input.txt");
+static INPUT: &str = include_str!("input.txt");
 
 pub fn part_one() -> usize {
     return INPUT
@@ -38,8 +38,8 @@ pub fn part_two() -> usize {
             )
         })
         .filter(|(left_lower, left_upper, right_lower, right_upper)| {
-            return (left_upper >= right_lower && (left_upper <= right_upper))
-                || (right_upper >= left_lower && (right_upper <= left_upper));
+            (left_upper >= right_lower && (left_upper <= right_upper))
+                || (right_upper >= left_lower && (right_upper <= left_upper))
         })
         .count();
 }
